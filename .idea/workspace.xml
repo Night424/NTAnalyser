@@ -4,20 +4,33 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57a05eec-99ed-4e83-842e-258d1f0ec1cb" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="57a05eec-99ed-4e83-842e-258d1f0ec1cb" name="Changes" comment="Basic Frontend&#10;&#10;Base frontend has been setup using React.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/night/network/NetworkController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/night/network/NetworkInterfaceDTO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/night/network/NetworkInterfaceService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/night/network/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/night/network/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/night/network/packetSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/night/network/packetSniffer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -44,14 +57,22 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.Main.executor": "Run",
+    "Application.NetworkInterfaces.executor": "Run",
+    "Application.packetSniffer.executor": "Run",
+    "Maven.NTAnalyser [clean,install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
+    "git-widget-placeholder": "Backend-and-API",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
   }
 }]]></component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn clean install" />
+    </option>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -61,6 +82,19 @@
       <option name="presentableId" value="Default" />
       <updated>1738600825346</updated>
     </task>
+    <task id="LOCAL-00001" summary="Basic Frontend&#10;&#10;Base frontend has been setup using React.">
+      <option name="closed" value="true" />
+      <created>1738770144375</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1738770144375</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Basic Frontend&#10;&#10;Base frontend has been setup using React." />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic Frontend&#10;&#10;Base frontend has been setup using React." />
   </component>
 </project>

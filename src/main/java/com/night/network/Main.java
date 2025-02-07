@@ -9,5 +9,6 @@ public class Main {
     public static void main(String[] args){
         SpringApplication.run(Main.class, args);
         System.out.println("Network Traffic Analyser is running...");
+
     }
 }
