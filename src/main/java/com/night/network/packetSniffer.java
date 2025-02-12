@@ -2,58 +2,54 @@ package com.night.network;
 
 import org.pcap4j.core.*;
 import java.util.List;
+import java.util.ArrayList;
 
 public class packetSniffer {
+    private static final int SNAPLEN = 65536;
+    private static final int TIMEOUT = 1000;
+    private static final List<String> packetList = new ArrayList<>();
 
-    // Method to start sniffing packets on a given network interface
-    public void startSniffing(PcapNetworkInterface nif) throws PcapNativeException, NotOpenException {
-        // Set up the capture parameters
-        int snapLen = 65536; // Maximum length of packet to capture (for now, capture full packets)
-        PcapHandle handle = nif.openLive(snapLen, PcapNetworkInterface.PromiscuousMode.PROMISCUOUS, 10);  // Promiscuous mode captures all packets
-
-        // Start capturing packets
+    // This method will start sniffing and capturing packets
+    public static void startSniffing() {
         try {
-            handle.loop(-1, new PacketListener() {
-                @Override
-                public void gotPacket(PcapPacket packet) {
-                    // Process the packet here
-                    System.out.println("Captured packet: " + packet);
-                    // You can extract specific details from the packet here, like IP, TCP, etc.
-                }
-            });
-        } catch (InterruptedException e) {
-            System.out.println("Packet sniffing interrupted.");
-            Thread.currentThread().interrupt(); // Restore the interrupt status
-        } finally {
-            // Closing the capture handle when done
-            // handle.close(); // Uncomment this if you plan to stop the capture at some point
-        }
-    }
-
-    // Main method to run packet sniffing on the first network interface
-    public static void main(String[] args) {
-        try {
-            // Find all available network devices
             List<PcapNetworkInterface> devices = Pcaps.findAllDevs();
-            if (devices == null || devices.isEmpty()) {
-                System.out.println("No network devices found.");
+            if (devices.isEmpty()) {
+                System.out.println("No network interfaces found.");
                 return;
             }
 
-            // Print all available devices
-            for (PcapNetworkInterface device : devices) {
-                System.out.println("Device: " + device.getName() + " - " + device.getDescription());
-            }
+            PcapNetworkInterface device = devices.get(3); // Change index as needed
+            System.out.println("Starting packet sniffing on: " + device.getDescription());
 
-            // Choose the first available device (you can modify this if you want to select specific device)
-            PcapNetworkInterface nif = devices.get(3); // Using the first device as an example
+            PcapHandle handle = device.openLive(SNAPLEN, PcapNetworkInterface.PromiscuousMode.NONPROMISCUOUS, TIMEOUT);
+            System.out.println("Listening for packets...");
 
-            // Start sniffing on this network interface
-            packetSniffer sniffer = new packetSniffer();
-            sniffer.startSniffing(nif);
+            handle.loop(-1, new PacketListener() {
+                @Override
+                public void gotPacket(PcapPacket packet) {
+                    String packetData = packet.toString();
+                    synchronized (packetList) {
+                        packetList.add(packetData); // Thread-safe list update
+                    }
+                    System.out.println("Packet Captured:\n" + packetData);
+                }
+            });
 
-        } catch (Exception e) {
-            e.printStackTrace();
+            handle.close();
+        } catch (PcapNativeException e) {
+            System.err.println("Error accessing network interface: " + e.getMessage());
+        } catch (InterruptedException e) {
+            System.err.println("Packet sniffer interrupted.");
+            Thread.currentThread().interrupt();
+        } catch (NotOpenException e) {
+            System.err.println("Error: PcapHandle is not open.");
+        }
+    }
+
+    // This method will return a copy of the list of captured packets
+    public static List<String> getCapturedPackets() {
+        synchronized (packetList) {
+            return new ArrayList<>(packetList); // Return a copy of the list to avoid external modification
         }
     }
 }
