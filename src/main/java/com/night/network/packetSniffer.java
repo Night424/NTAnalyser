@@ -47,43 +47,44 @@ public class packetSniffer {
         String destIP = "Unknown";
         String protocol = "Unknown";
         int length = packet.length();
+        int sourcePort = -1;
+        int destPort = -1;
 
         try {
             Packet ethernetPacket = packet.getPacket();
-            System.out.println("Captured Packet Class: " + ethernetPacket.getClass().getName()); // Debugging line
 
-            // Ensure it's an Ethernet packet
             if (ethernetPacket instanceof org.pcap4j.packet.EthernetPacket ethPacket) {
-                Packet payload = ethPacket.getPayload(); // Extract payload (which may contain IP)
+                Packet payload = ethPacket.getPayload();
 
                 if (payload instanceof IpPacket ipPacket) {
                     sourceIP = ipPacket.getHeader().getSrcAddr().getHostAddress();
                     destIP = ipPacket.getHeader().getDstAddr().getHostAddress();
 
-                    if (ipPacket.getPayload() instanceof TcpPacket) {
+                    if (ipPacket.getPayload() instanceof TcpPacket tcpPacket) {
                         protocol = "TCP";
-                    } else if (ipPacket.getPayload() instanceof UdpPacket) {
+                        sourcePort = tcpPacket.getHeader().getSrcPort().valueAsInt();
+                        destPort = tcpPacket.getHeader().getDstPort().valueAsInt();
+                    } else if (ipPacket.getPayload() instanceof UdpPacket udpPacket) {
                         protocol = "UDP";
+                        sourcePort = udpPacket.getHeader().getSrcPort().valueAsInt();
+                        destPort = udpPacket.getHeader().getDstPort().valueAsInt();
                     } else {
                         protocol = "Other IP";
                     }
                 } else if (payload instanceof org.pcap4j.packet.ArpPacket) {
-                    protocol = "ARP"; // Address Resolution Protocol
+                    protocol = "ARP";
                 } else {
                     protocol = "Unknown Payload";
                 }
             } else {
-                protocol = "Non-Ethernet Packet"; // Unhandled protocol (e.g., raw radio, etc.)
+                protocol = "Non-Ethernet Packet";
             }
         } catch (Exception e) {
             System.err.println("Error parsing packet: " + e.getMessage());
         }
 
-        return new PacketData(sourceIP, destIP, protocol, length);
+        return new PacketData(sourceIP, destIP, protocol, length, sourcePort, destPort);
     }
-
-
-
 
     public static List<PacketData> getCapturedPackets() {
         return new ArrayList<>(packetList);
