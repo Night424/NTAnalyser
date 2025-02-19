@@ -4,11 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="57a05eec-99ed-4e83-842e-258d1f0ec1cb" name="Changes" comment="Packet Formatting&#10;&#10;Added formatting for packets being captured&#10;&#10;sourceIP&#10;destIP&#10;protocol&#10;length">
-      <change afterPath="$PROJECT_DIR$/commands.txt" afterDir="false" />
+    <list default="true" id="57a05eec-99ed-4e83-842e-258d1f0ec1cb" name="Changes" comment="Packet Filtering&#10;&#10;Added filtering to sort captures according to user defined filters + commands.txt">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/night/network/PacketStatsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/night/network/PacketController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/night/network/PacketController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/night/network/PacketData.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/night/network/PacketData.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/night/network/PacketStats.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/night/network/PacketStats.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/night/network/packetSniffer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/night/network/packetSniffer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -63,12 +63,13 @@
     "Application.packetSniffer.executor": "Run",
     "Maven.NTAnalyser [clean,install].executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "Backend-and-API",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "discord-application"
   }
 }]]></component>
   <component name="RunAnythingCache">
@@ -117,8 +118,27 @@
       <option name="project" value="LOCAL" />
       <updated>1739819721125</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Packet Filtering&#10;&#10;Added filtering to sort captures according to user defined filters + commands.txt">
+      <option name="closed" value="true" />
+      <created>1739885578235</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1739885578235</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -126,6 +146,7 @@
     <MESSAGE value="Sniffer&#10;&#10;Basic Sniffer setup" />
     <MESSAGE value="Sniffer API &#10;&#10;Basic Sniffer API setup" />
     <MESSAGE value="Packet Formatting&#10;&#10;Added formatting for packets being captured&#10;&#10;sourceIP&#10;destIP&#10;protocol&#10;length" />
-    <option name="LAST_COMMIT_MESSAGE" value="Packet Formatting&#10;&#10;Added formatting for packets being captured&#10;&#10;sourceIP&#10;destIP&#10;protocol&#10;length" />
+    <MESSAGE value="Packet Filtering&#10;&#10;Added filtering to sort captures according to user defined filters + commands.txt" />
+    <option name="LAST_COMMIT_MESSAGE" value="Packet Filtering&#10;&#10;Added filtering to sort captures according to user defined filters + commands.txt" />
   </component>
 </project>

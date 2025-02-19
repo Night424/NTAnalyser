@@ -69,19 +69,23 @@ public class packetSniffer {
                         sourcePort = udpPacket.getHeader().getSrcPort().valueAsInt();
                         destPort = udpPacket.getHeader().getDstPort().valueAsInt();
                     } else {
-                        protocol = "Other IP";
+                        protocol = "Other IP"; // Other IP-based protocols (e.g., ICMP)
                     }
                 } else if (payload instanceof org.pcap4j.packet.ArpPacket) {
                     protocol = "ARP";
                 } else {
-                    protocol = "Unknown Payload";
+                    protocol = "Non-IP"; // If it's Ethernet but not IP or ARP
                 }
             } else {
-                protocol = "Non-Ethernet Packet";
+                protocol = "Non-Ethernet"; // Some other low-level packet type
             }
         } catch (Exception e) {
             System.err.println("Error parsing packet: " + e.getMessage());
         }
+
+        System.out.println("updating stats for: " + protocol);
+
+        PacketStats.updateStats(protocol);
 
         return new PacketData(sourceIP, destIP, protocol, length, sourcePort, destPort);
     }
