@@ -83,6 +83,8 @@ public class packetSniffer {
             System.err.println("Error parsing packet: " + e.getMessage());
         }
 
+        DatabaseManager.insertPacket(sourceIP, destIP, protocol, length);
+
         System.out.println("updating stats for: " + protocol);
 
         PacketStats.updateStats(protocol);

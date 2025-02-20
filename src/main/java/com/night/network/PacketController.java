@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/packets")
 public class PacketController {
 
+    private static final String DB_URL = "jdbc:sqlite:packets.db";
+
     @PostMapping("/start")
     public String startSniffing() {
         new Thread(packetSniffer::startSniffing).start();
