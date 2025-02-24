@@ -17,6 +17,12 @@ public class PacketController {
         return "Packet sniffing started!";
     }
 
+    @PostMapping("/stop")
+    public String stopSniffing() {
+        packetSniffer.stopSniffing();
+        return "Packet sniffing stopped!";
+    }
+
     @GetMapping("/all")
     public List<PacketData> getCapturedPackets() {
         return packetSniffer.getCapturedPackets();
@@ -57,6 +63,4 @@ public class PacketController {
 
         return packets;
     }
-
 }
-

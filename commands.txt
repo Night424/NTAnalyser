@@ -1,0 +1,20 @@
+Start Sniffer
+curl -X POST http://localhost:8080/api/packets/start
+
+View Stats
+http://localhost:8080/api/stats
+
+View All Packets
+http://localhost:8080/api/packets/all
+
+Filter Only TCP Packets
+http://localhost:8080/api/packets?protocol=TCP
+
+Filter Packets from a Specific Source IP
+http://localhost:8080/api/packets?sourceIP=192.168.1.100
+
+Filter Packets to a Specific Destination IP
+http://localhost:8080/api/packets?destIP=8.8.8.8
+
+Filter Packets on a Specific Port (e.g., HTTP on port 80)
+http://localhost:8080/api/packets?port=80

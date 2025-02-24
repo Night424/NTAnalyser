@@ -3,25 +3,10 @@ import { getStatus } from './api';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
 import './App.css';
-
+import Dashboard from "./components/Dashboard";
 
 function App() {
-  const [count, setCount] = useState('Loading...')
-
-  useEffect(() => {
-    const fetchData = async () => {
-        const data = await getStatus();
-        setStatus(data.status);
-    };
-    fetchData();
-  }, []);
-
-  return (
-    <div className="App">
-        <h1>Network Traffic Analyser</h1>
-        <p>Status: {status}</p>
-    </div>
-  );
+  return <Dashboard />;
 }
 
 export default App

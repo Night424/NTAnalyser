@@ -6,6 +6,7 @@ import org.pcap4j.packet.TcpPacket;
 import org.pcap4j.packet.UdpPacket;
 import org.pcap4j.packet.Packet;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.ArrayList;
 
@@ -13,6 +14,7 @@ public class packetSniffer {
     private static final int SNAPLEN = 65536;
     private static final int TIMEOUT = 1000;
     private static final List<PacketData> packetList = new ArrayList<>();
+    private static boolean isSniffing = true;  // Flag to control packet sniffing
 
     public static void startSniffing() {
         try {
@@ -37,12 +39,26 @@ public class packetSniffer {
             });
 
             handle.close();
-        } catch (PcapNativeException | NotOpenException | InterruptedException e) {
-            System.err.println("Error: " + e.getMessage());
+        } catch (PcapNativeException e) {
+            System.err.println("Error opening the device: " + e.getMessage());
+        } catch (NotOpenException e) {
+            System.err.println("Error: The PcapHandle is not open: " + e.getMessage());
+        } catch (InterruptedException e) {
+            System.err.println("Packet sniffing was interrupted: " + e.getMessage());
+            Thread.currentThread().interrupt();  // Restore interrupted status
+        } catch (Exception e) {
+            System.err.println("Unexpected error: " + e.getMessage());
         }
     }
 
+
+    public static void stopSniffing() {
+        isSniffing = false;  // Stop sniffing
+        System.out.println("Packet sniffing stopped.");
+    }
+
     private static PacketData parsePacket(PcapPacket packet) {
+        String timeStamp = Instant.now().toString();
         String sourceIP = "Unknown";
         String destIP = "Unknown";
         String protocol = "Unknown";
@@ -84,12 +100,9 @@ public class packetSniffer {
         }
 
         DatabaseManager.insertPacket(sourceIP, destIP, protocol, length);
-
-        System.out.println("updating stats for: " + protocol);
-
         PacketStats.updateStats(protocol);
 
-        return new PacketData(sourceIP, destIP, protocol, length, sourcePort, destPort);
+        return new PacketData(timeStamp, sourceIP, destIP, protocol, length, sourcePort, destPort);
     }
 
     public static List<PacketData> getCapturedPackets() {

@@ -22,10 +22,13 @@ public class DatabseController {
         List<PacketData> packets = new ArrayList<>();
         try (Connection conn = DriverManager.getConnection(DB_URL);
              Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery("SELECT sourceIP, destIP, protocol, length FROM packets")) {
+             ResultSet rs = stmt.executeQuery("SELECT sourceIP, destIP, protocol, length, sourcePort, destPort, timeStamp FROM packets")) {
 
             while (rs.next()) {
+                String timeStamp = rs.getString("timeStamp");
+
                 packets.add(new PacketData(
+                        timeStamp,  // Include the timestamp here
                         rs.getString("sourceIP"),
                         rs.getString("destIP"),
                         rs.getString("protocol"),

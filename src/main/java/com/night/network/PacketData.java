@@ -1,6 +1,7 @@
 package com.night.network;
 
 public class PacketData {
+    private String timeStamp;
     private String sourceIP;
     private String destIP;
     private String protocol;
@@ -8,7 +9,8 @@ public class PacketData {
     private int sourcePort;
     private int destPort;
 
-    public PacketData(String sourceIP, String destIP, String protocol, int length, int sourcePort, int destPort) {
+    public PacketData(String timeStamp, String sourceIP, String destIP, String protocol, int length, int sourcePort, int destPort) {
+        this.timeStamp = timeStamp;
         this.sourceIP = sourceIP;
         this.destIP = destIP;
         this.protocol = protocol;
@@ -17,6 +19,7 @@ public class PacketData {
         this.destPort = destPort;
     }
 
+    public String getTimeStamp() { return timeStamp; }
     public String getSourceIP() { return sourceIP; }
     public String getDestIP() { return destIP; }
     public String getProtocol() { return protocol; }
@@ -27,7 +30,8 @@ public class PacketData {
     @Override
     public String toString() {
         return "PacketData{" +
-                "sourceIP='" + sourceIP + '\'' +
+                "timeStamp='" + timeStamp + '\'' +
+                ", sourceIP='" + sourceIP + '\'' +
                 ", destIP='" + destIP + '\'' +
                 ", protocol='" + protocol + '\'' +
                 ", length=" + length +
