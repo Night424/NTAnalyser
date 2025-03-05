@@ -36,7 +36,7 @@ The **Network Traffic Analysis Tool** is a Java-based packet sniffer that captur
 ### Backend Setup (Spring Boot)
 
 1. Clone the repository:
-   git clone [https://github.com/yourusername/network-traffic-analyzer.git](https://github.com/Night424/NTAnalyser.git)
+   git clone https://github.com/Night424/NTAnalyser.git
    cd network-traffic-analyzer
 
 2. Install dependencies using Maven:
